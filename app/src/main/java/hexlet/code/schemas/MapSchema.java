@@ -8,8 +8,12 @@ public class MapSchema extends BaseScheme {
         return this;
     }
 
-    public MapSchema sizeof(int size) {
-        addRequirement(map -> map instanceof Map<?,?> && ((Map<?, ?>) map).size() == size);
-        return this;
+    public void sizeof(int size) {
+        addRequirement(map -> map instanceof Map<?,?>
+                && ((Map<?, ?>) map).size() == size);
+    }
+
+    public void shape(Map<String, BaseScheme> size) {
+        addRequirement(map -> map instanceof Map<?,?>);
     }
 }
