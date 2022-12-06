@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public final class NumberSchema extends BaseScheme{
+public final class NumberSchema extends BaseScheme {
     public NumberSchema required() {
         addRequirement(number -> number instanceof Integer);
         return this;
