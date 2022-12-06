@@ -26,7 +26,7 @@ public class SchemaTest {
         Assertions.assertTrue(schema.isValid("hello"));
         Assertions.assertFalse(schema.isValid(null));
         Assertions.assertFalse(schema.isValid(""));
-        Assertions.assertFalse(schema.minLength(6).isValid("hello"));
+        Assertions.assertFalse(schema.minLength(SIX).isValid("hello"));
         Assertions.assertTrue(schema.contains("what").isValid("what does the fox say"));
         Assertions.assertFalse(schema.contains("whatthe").isValid("what does the fox say"));
     }
