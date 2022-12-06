@@ -12,10 +12,10 @@ import java.util.Map;
 
 public class SchemaTest {
 
-    final int six = 6;
-    final int ten = 10;
-    final int five = 5;
-    final int oneHundred = 100;
+    private static final int SIX = 6;
+    private static final int TEN = 10;
+    private static final int FIVE = 5;
+    private static final int ONE_HUNDRED = 100;
     @Test
     void stringSchemaTest() {
         StringSchema schema = new Validator().string();
@@ -38,15 +38,15 @@ public class SchemaTest {
         Assertions.assertTrue(schema.isValid(null));
         schema.required();
         Assertions.assertFalse(schema.isValid(null));
-        Assertions.assertTrue(schema.isValid(six));
+        Assertions.assertTrue(schema.isValid(SIX));
         Assertions.assertFalse(schema.isValid("5"));
-        Assertions.assertTrue(schema.positive().isValid(six));
-        Assertions.assertFalse(schema.isValid(-six));
-        schema.range(five, ten);
-        Assertions.assertTrue(schema.isValid(ten));
-        Assertions.assertTrue(schema.isValid(five));
-        Assertions.assertFalse(schema.isValid(ten + 1));
-        Assertions.assertFalse(schema.isValid(five - 1));
+        Assertions.assertTrue(schema.positive().isValid(SIX));
+        Assertions.assertFalse(schema.isValid(-SIX));
+        schema.range(FIVE, TEN);
+        Assertions.assertTrue(schema.isValid(TEN));
+        Assertions.assertTrue(schema.isValid(FIVE));
+        Assertions.assertFalse(schema.isValid(TEN + 1));
+        Assertions.assertFalse(schema.isValid(FIVE - 1));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class SchemaTest {
 
         Map<String, Object> human1 = new HashMap<>();
         human1.put("name", "Kolya");
-        human1.put("age", oneHundred);
+        human1.put("age", ONE_HUNDRED);
         Assertions.assertTrue(schema.isValid(human1));
 
         Map<String, Object> human2 = new HashMap<>();
@@ -91,7 +91,7 @@ public class SchemaTest {
 
         Map<String, Object> human4 = new HashMap<>();
         human4.put("name", "Valya");
-        human4.put("age", -five);
+        human4.put("age", -FIVE);
         Assertions.assertFalse(schema.isValid(human4));
     }
 }
