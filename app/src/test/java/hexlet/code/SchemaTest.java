@@ -11,6 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SchemaTest {
+
+    final int six = 6;
+    final int ten = 10;
+    final int five = 5;
+    final int oneHundred = 100;
     @Test
     void stringSchemaTest() {
         StringSchema schema = new Validator().string();
@@ -28,19 +33,20 @@ public class SchemaTest {
 
     @Test
     void numberSchemaTest() {
+
         NumberSchema schema = new Validator().number();
         Assertions.assertTrue(schema.isValid(null));
         schema.required();
         Assertions.assertFalse(schema.isValid(null));
-        Assertions.assertTrue(schema.isValid(6));
+        Assertions.assertTrue(schema.isValid(six));
         Assertions.assertFalse(schema.isValid("5"));
-        Assertions.assertTrue(schema.positive().isValid(10));
-        Assertions.assertFalse(schema.isValid(-6));
-        schema.range(5, 10);
-        Assertions.assertTrue(schema.isValid(10));
-        Assertions.assertTrue(schema.isValid(5));
-        Assertions.assertFalse(schema.isValid(11));
-        Assertions.assertFalse(schema.isValid(4));
+        Assertions.assertTrue(schema.positive().isValid(six));
+        Assertions.assertFalse(schema.isValid(-six));
+        schema.range(five, ten);
+        Assertions.assertTrue(schema.isValid(ten));
+        Assertions.assertTrue(schema.isValid(five));
+        Assertions.assertFalse(schema.isValid(ten + 1));
+        Assertions.assertFalse(schema.isValid(five - 1));
     }
 
     @Test
@@ -70,7 +76,7 @@ public class SchemaTest {
 
         Map<String, Object> human1 = new HashMap<>();
         human1.put("name", "Kolya");
-        human1.put("age", 100);
+        human1.put("age", oneHundred);
         Assertions.assertTrue(schema.isValid(human1));
 
         Map<String, Object> human2 = new HashMap<>();
@@ -85,7 +91,7 @@ public class SchemaTest {
 
         Map<String, Object> human4 = new HashMap<>();
         human4.put("name", "Valya");
-        human4.put("age", -5);
+        human4.put("age", -five);
         Assertions.assertFalse(schema.isValid(human4));
     }
 }
