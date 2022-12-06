@@ -13,7 +13,9 @@ public class MapSchema extends BaseScheme {
                 && ((Map<?, ?>) map).size() == size);
     }
 
-    public void shape(Map<String, BaseScheme> size) {
-        addRequirement(map -> map instanceof Map<?,?>);
+    public void shape(Map<String, BaseScheme> schemas) {
+        addRequirement(map -> map instanceof Map
+                && schemas.entrySet().stream()
+                .allMatch(s -> s.getValue().isValid(((Map<?,?>) map).get(s.getKey()))));
     }
 }

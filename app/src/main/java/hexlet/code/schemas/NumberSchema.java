@@ -7,7 +7,7 @@ public final class NumberSchema extends BaseScheme{
     }
 
     public NumberSchema positive() {
-        addRequirement(number -> number instanceof Integer
+        addRequirement(number -> number == null || number instanceof Integer
                 && ((Integer) number) > 0);
         return this;
     }

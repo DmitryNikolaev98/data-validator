@@ -81,11 +81,11 @@ public class SchemaTest {
         Map<String, Object> human3 = new HashMap<>();
         human3.put("name", "");
         human3.put("age", null);
-        Assertions.assertTrue(schema.isValid(human3));
+        Assertions.assertFalse(schema.isValid(human3));
 
         Map<String, Object> human4 = new HashMap<>();
         human4.put("name", "Valya");
         human4.put("age", -5);
-        Assertions.assertTrue(schema.isValid(human4));
+        Assertions.assertFalse(schema.isValid(human4));
     }
 }
