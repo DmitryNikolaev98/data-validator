@@ -1,6 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.schemas.BaseScheme;
+import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SchemaTest {
+public class ValidatorTest {
 
     private static final int SIX = 6;
     private static final int TEN = 10;
@@ -69,7 +69,7 @@ public class SchemaTest {
     void shapeTest() {
         Validator v = new Validator();
         MapSchema schema = new Validator().map();
-        Map<String, BaseScheme> schemas = new HashMap<>();
+        Map<String, BaseSchema> schemas = new HashMap<>();
         schemas.put("name", v.string().required());
         schemas.put("age", v.number().positive());
         schema.shape(schemas);

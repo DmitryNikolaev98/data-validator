@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-public final class StringSchema extends BaseScheme {
+public final class StringSchema extends BaseSchema {
 
     // любая непустая строка
     public StringSchema required() {
