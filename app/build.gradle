@@ -1,50 +1,35 @@
 plugins {
-    id 'com.github.ben-manes.versions' version '0.39.0'
-    id 'java-library'
     id 'java'
-    id 'application'
     id 'checkstyle'
     id 'jacoco'
-    id 'com.adarshr.test-logger' version '3.1.0'
 }
 
-group = 'hexlet.code'
-version = '1.0-SNAPSHOT'
+group 'hexlet.code'
+version '1.0-SNAPSHOT'
 
-application {
-    mainClass = 'hexlet.code.App'
+repositories {
+    mavenCentral()
 }
 
 compileJava {
     options.release = 17
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    implementation 'info.picocli:picocli:4.6.2'
-    annotationProcessor 'info.picocli:picocli-codegen:4.6.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
-    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.8'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
 
 test {
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
+}
+
+checkstyle {
+    toolVersion '10.4'
 }
 
 jacocoTestReport {
-    dependsOn test
     reports {
-        xml.enabled true
-        html.enabled true
+        xml.required = true
     }
-}
-
-testlogger {
-    showStandardStreams true
 }

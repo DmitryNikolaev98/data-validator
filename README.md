@@ -15,14 +15,41 @@ Before you can build this project, you must install and configure the following 
 1. Java 17
 2. Gradle
 
-## Running the app
+## Examples
 
+### String validations
 
 ```bash
-make install
-make build
-make run
+Validator v = new Validator();
+StringSchema schema = v.string();
+
+schema.isValid(""); // true
+// Пока на вызван метод required(), null считается валидным
+schema.isValid(null); // true
+
+schema.required();
+
+schema.isValid("what does the fox say"); // true
+schema.isValid("hexlet"); // true
+schema.isValid(null); // false
+schema.isValid(5); // false
+schema.isValid(""); // false
+
+schema.contains("wh").isValid("what does the fox say"); // true
+schema.contains("what").isValid("what does the fox say"); // true
+schema.contains("whatthe").isValid("what does the fox say"); // false
+
+schema.isValid("what does the fox say"); // false
+// уже false, так как добавлена ещё одна проверка contains("whatthe")
 ```
+
+
+## Create build
+
+```bash
+make build
+```
+
 ## Testing
 
 To launch your application's tests, run:
